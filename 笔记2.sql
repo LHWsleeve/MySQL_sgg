@@ -473,7 +473,6 @@ CREATE PROCEDURE存储过程名（参数列表）
 		二、调用语法
 CALL存储过程名（实参列表）
 */
-
 /*
 函数
 含义：一组预先编评好的sg语句的集合，理解成批处理语句1、提高代码的重用性
@@ -482,18 +481,87 @@ CALL存储过程名（实参列表）
 区别：
 存储过程：可以有0个返回，也可以有多个返回。适合做批量插入，批量更新
 函数：有且仅有有1个返回。适合做增删改
-*/
+*/#一、创建语法
+ 
+CREATE FUNCTION函数名（参数列表）RETURNS 返回类型 
+BEGIN
+函数体
+END 
 
-
-#一、创建语法
-CREATE FUNCTION函数名（参数列表）RETURNS返回类型BEGIN函数体END
 /*
 注意：
 1，参数列表包含两部分：参数名参数类型
 2·函数体：肯定会有return语句，如果没有会报错如果return语句没有放在函数体的最后也不报错，但不建议return值；
 3，函数体中仅有一句话，则可以省略begin end
 4，使用delimiter语句设置结束标记
+*/#二、调用语法
+SELECT函数名（参数列表）
+
+
+/*
+2.case结构
+情况1：类似于java中的switch语句，一般用于实现等值判断
+语法：
+CASE 变量 表达式 字段
+WHEN 要判断的值 THEN返回的值或语句；
+WHEN 要判断的值 THEN返回的值2或语句；
+...
+ELSE要返回的值n 或语句；
+END CASE;
+
+情况2：类似于java中的多重IF语句，一般用于实现区间判断
+CASE
+WHEN要判断的条件1 THEN返回的值1或语句；
+WHEN要判断的条件2 THEN返回的值2或语句；
+...
+ELSE要返回的值n或语句；
+END CASE;
+
+可以作为表达式，嵌套在其他语句中使用，可以放在任何地方，BEGIN END中或BEGIN END的外面
+可以作为独立的语句去使用，只能放在BGIN END中
+
+特点
+①可以作为表达式，嵌套在其他语句中使用，可以放在任何地方，BEGIN END中或BEGIN END的外面可以作为独立的语句去使用，只能放在BEGIN END中
+②如果WHEN中的值满足或条件成立，则执行对应的THEN后面的语句，并且结束CASE如果都不满足，则执行EISE中的语句或值
+③ELSE可以省略，如果ELSE省略了，并且所有WHEN条件都不满足，则返回NULL
 */
 
-#二、调用语法
-SELECT函数名（参数列表）
+#3.if结构
+/*
+功能：实现多重升支
+语法：
+if条件1then语句1；
+elseif条件2 then语句2；
+【else语句n；】
+end if；
+
+应用在begin end中
+*/
+
+
+/*循环控制：iterate类似于continue，继续，结束本次循环，继续下一次leave类似于 break，跳出，结束当前所在的循环
+*
+#1.while
+/*
+语法：
+【标签：】while 循环条件 do 
+循环体；
+end while【标签】；
+*/
+
+
+#2.1oop
+/*
+语法：
+【标签：】loop循环体；end loop【标签】；
+可以用来模拟简单的死循环
+*/
+
+
+#3.repeat
+/* 
+语法：
+【标签：】repeat循环体；
+until 结束循环的条件
+end repeat【标签】；
+*/
